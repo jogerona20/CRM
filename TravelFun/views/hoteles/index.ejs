@@ -1,0 +1,56 @@
+<% include ../layouts/cabecera.ejs %> 
+        <br/>
+        <br/>
+        <a href="/hoteles/crear" class="btn btn-primary" type="button">Crear Nuevo Hotel</a>
+        <a href="/hoteles/correo" class="btn btn-primary" type="button">Enviar correo</a>
+        <br/>
+        <br/>
+        
+        <table class="table table-light">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                    <th>Precio</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+                <% for( let x = 0; x < hoteles.length; x++ ) { %>
+                    
+                    <tr>
+                        <td> <%=hoteles[x].Id_Hotel%>  </td>
+                        <td> <%=hoteles[x].Nombre_Hotel %> </td>
+
+                        <td>
+                            <img class="img-thumbnail" width="100" src="images/<%=hoteles[x].imagen %>" alt=""> 
+                           
+                        </td>
+                        
+                        <td> <%=hoteles[x].Precio %> </td>
+                        <td>
+                             <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                 <form class="form-inline" method="get" action="/hoteles/editar/<%=hoteles[x].Id_Hotel%>">
+                                    <button class="btn btn-warning" type="submit">Editar</button>
+                                </form>
+                             </div> 
+                             
+                             |
+
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                <form class="form-inline" method="post" action="/hoteles/eliminar/<%=hoteles[x].Id_Hotel%>">
+                                    <button class="btn btn-danger" type="submit">Borrar</button>
+                                </form>
+                            </div> 
+                        
+                        </td>
+                    </tr>
+    
+                <% } %>
+    
+    
+            </tbody>
+        </table>
+        <% include ../layouts/pie.ejs %> 
