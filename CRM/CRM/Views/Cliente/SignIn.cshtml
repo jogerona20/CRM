@@ -1,0 +1,46 @@
+﻿@model CRM.Models.DTO.SignInModel
+
+<section class="mt-5">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5 mt-5">
+                <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png" class="img-fluid"
+                     alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form asp-action="SignIn">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-3 mt-4">
+                        <input asp-for="Correo" type="email" id="txtEmail" class="form-control form-control-lg"
+                               placeholder="Enter a valid email address" />
+                        <label asp-for="Correo" class="form-label" for="txtEmail">Email address</label>
+                        <span asp-validation-for="Correo" class="text-danger"></span>
+
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline">
+                        <input asp-for="Password" type="password" id="txtPassword" class="form-control form-control-lg"
+                               placeholder="Enter password" />
+                        <label asp-for="Password" class="form-label" for="txtPassword">Password</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary btn-lg" id="btnSignIn" value="SignIn"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                            Sign In
+                        </button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">
+                            Don't have an account? <a asp-area="" asp-controller="Cliente" asp-action="SignUp"
+                                                      class="link-danger">Register</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
