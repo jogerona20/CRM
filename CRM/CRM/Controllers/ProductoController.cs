@@ -22,5 +22,7 @@ namespace CRM.Controllers
             var productos = productoRepository.Get().ToList<Producto>();
             return View(productos);
         }
+
+
     }
 }

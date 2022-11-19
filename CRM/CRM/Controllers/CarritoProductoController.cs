@@ -32,5 +32,23 @@ namespace CRM.Controllers
 
             return View(productos);
         }
+
+        [Route("PostCarritoCompra")]
+        [HttpPost]
+        public IActionResult PostCarritoCompra(int id)
+        {
+            var currentUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var producto = productoRepository.GetById(id);
+            CarritoProducto carritoProducto = new CarritoProducto
+            {
+                ClienteID = currentUser,
+                Precio = producto.Precio,
+                IdProducto = producto.Id
+            };
+
+            carritoProductoRepository.Create(carritoProducto);
+            carritoProductoRepository.SaveChanges();
+            return RedirectToAction("Index", "CarritoProducto");
+        }
     }
 }
