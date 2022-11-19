@@ -16,7 +16,9 @@
         <p class="card-text">@(string.IsNullOrEmpty(producto.Descripcion) ? "Description is not availabe": producto.Descripcion)</p>
         <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-                <a class="btn btn-success font-weight-bold" style="color:white">Agregar al carrito</a>
+                <form asp-action="PostCarritoCompra" asp-controller="CarritoProducto" asp-route-id="@producto.Id">
+                    <button class="btn btn-success font-weight-bold" style="color:white"  type="submit" value="PostCarritoCompra">Agregar al carrito</button>
+                </form>
             </div>
             <h5 class="font-weight-bold">$@producto.Precio</h5>
         </div>
