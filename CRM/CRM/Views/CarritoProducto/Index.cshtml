@@ -12,8 +12,11 @@
         <h5 class="card-header">@(string.IsNullOrEmpty(producto.Nombre) ? "Name is not available" : producto.Nombre)</h5>
         <div class="card-body">
             <p class="card-text">@(string.IsNullOrEmpty(producto.Descripcion) ? "Description is not availabe": producto.Descripcion)</p>
+            <h5 class="font-weight-bold">$@producto.Precio</h5>
             <div class="d-flex justify-content-between align-items-center">
-                <h5 class="font-weight-bold">$@producto.Precio</h5>
+                <form asp-action="DeleteCarritoProducto" asp-controller="CarritoProducto" asp-route-id="@producto.Id">
+                    <button class="btn btn-danger font-weight-bold" style="color:white" type="submit" value="DeleteCarritoProducto">Quitar de Carrito</button>
+                </form>
             </div>
         </div>
     </div>}

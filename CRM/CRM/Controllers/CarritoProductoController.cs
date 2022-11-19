@@ -29,7 +29,6 @@ namespace CRM.Controllers
             {
                 productos.Add(productoRepository.GetById(item.IdProducto));
             }
-
             return View(productos);
         }
 
@@ -47,6 +46,17 @@ namespace CRM.Controllers
             };
 
             carritoProductoRepository.Create(carritoProducto);
+            carritoProductoRepository.SaveChanges();
+            return RedirectToAction("Index", "CarritoProducto");
+        }
+
+
+        [Route("DeleteCarritoProducto")]
+        [HttpPost]
+        public IActionResult DeleteCarritoProducto(int id)
+        {
+            var carritoAEliminar = carritoProductoRepository.Get(x => x.IdVenta == null && x.IdProducto == id);
+            carritoProductoRepository.Delete(carritoAEliminar.First().Id);
             carritoProductoRepository.SaveChanges();
             return RedirectToAction("Index", "CarritoProducto");
         }
