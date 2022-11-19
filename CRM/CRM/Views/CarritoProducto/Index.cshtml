@@ -1,0 +1,25 @@
+﻿@{ ViewData["Title"] = "Home Page"; }
+
+@model IEnumerable<CRM.Domain.Producto>
+
+
+<div class="row mt-5 mb-5">
+    <h2>Productos En Carrito</h2>
+    <div class="mt-5 col-12">
+        @foreach (var producto in Model.ToList().OrderBy(x => x.Nombre))
+        {
+    <div class="card mb-4 shadow-sm border-dark col-12">
+        <h5 class="card-header">@(string.IsNullOrEmpty(producto.Nombre) ? "Name is not available" : producto.Nombre)</h5>
+        <div class="card-body">
+            <p class="card-text">@(string.IsNullOrEmpty(producto.Descripcion) ? "Description is not availabe": producto.Descripcion)</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="font-weight-bold">$@producto.Precio</h5>
+            </div>
+        </div>
+    </div>}
+        <form asp-action="PostVenta" asp-controller="Venta">
+            <button class="btn btn-success font-weight-bold" style="color:white" type="submit" value="PostVenta">Realizar Compra</button>
+        </form>
+    </div>
+</div>
+

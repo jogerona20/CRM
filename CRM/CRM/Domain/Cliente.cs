@@ -16,6 +16,8 @@ namespace CRM.Domain
         [Required]
         public string Direccion { get; set; }
         public List<Venta> Ventas { get; set; }
+        public List<CarritoProducto> CarritoProductos { get; set; }
+
 
     }
 }

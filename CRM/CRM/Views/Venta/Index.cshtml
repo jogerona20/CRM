@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<CRM.Domain.Venta>
+
+
+<div class="row mt-5 mb-5">
+    <h2>Compras Realizadas</h2>
+    <div class="mt-5 col-12">
+        @foreach (var venta in Model.ToList().OrderBy(x => x.Fecha))
+        {
+<div class="card mb-4 shadow-sm border-dark col-12">
+    <h5 class="card-header">Id de la compra: @venta.Id</h5>
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+                <a class="btn btn-success font-weight-bold" style="color:white">Ver Venta</a>
+            </div>
+            <h5 class="font-weight-bold">Fecha: @venta.Fecha.ToString("MM/dd/yyyy")</h5>
+        </div>
+    </div>
+</div>}
+    </div>
+</div>
+

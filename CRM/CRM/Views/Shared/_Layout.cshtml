@@ -28,10 +28,16 @@
                     {
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" asp-action="Index" asp-controller="Cliente">Ventas</a>
+                            <a class="nav-link" asp-action="Index" asp-controller="Venta">Ventas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-action="Index" asp-controller="Cliente">Rastrear Venta</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Index" asp-controller="Producto">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Index" asp-controller="CarritoProducto">Ver Carrito</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-action="Index" asp-controller="Cliente">Nómina</a>
@@ -63,7 +69,7 @@
             <div style="margin-top:4rem">
                 @RenderBody()
             </div>
-            <footer class="text-center text-lg-start fixed-bottom" style="background-color:#e3f2fd;height:8%"
+            <footer class="text-center text-lg-start fixed-bottom" style="background-color:#e3f2fd;height:5%"
                 <!-- Copyright -->
                 <div class="text-center p-3">
                     © 2022 Geovanny Rojo Navarro

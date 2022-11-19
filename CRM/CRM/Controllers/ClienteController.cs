@@ -18,6 +18,7 @@ namespace CRM.Controllers
         {
             this.clienteService = clienteService;
         }
+
         [Authorize]
         public IActionResult Index()
         {

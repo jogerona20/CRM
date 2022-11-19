@@ -36,6 +36,9 @@ namespace CRM
             services.AddDbContext<ProductoDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDbContext<CarritoProductoDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddIdentity<Cliente, IdentityRole>()
                 .AddEntityFrameworkStores<VentaDbContext>().AddClaimsPrincipalFactory<ClientClaimsPrincipalFactory>();
 
@@ -61,7 +64,10 @@ namespace CRM
             });
 
             services.AddControllersWithViews();
+            services.AddTransient<IProductoRepository, ProductoRepository>();
             services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<ICarritoProductoRepository, CarritoProductoRepository>();
+            services.AddTransient<IVentaRepository, VentaRepository>();
 
             services.AddScoped<IClienteService, ClienteService>();
 
@@ -92,7 +98,7 @@ namespace CRM
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Cliente}/{action=Index}");
+                    pattern: "{controller=Producto}/{action=Index}");
             });
         }
     }

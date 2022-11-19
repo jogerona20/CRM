@@ -24,7 +24,7 @@ namespace CRM.Data.DBContext
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Producto>()
-                .HasKey(b => b.SKU);
+                .HasKey(b => b.Id);
         }
     }
 }
