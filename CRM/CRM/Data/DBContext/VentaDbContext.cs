@@ -22,7 +22,7 @@ namespace CRM.Data.DBContext
             builder.Entity<Venta>()
            .HasOne(p => p.Cliente)
            .WithMany(b => b.Ventas)
-           .HasForeignKey(p => p.CompradoPor);
+           .HasForeignKey(p => p.ClienteId);
 
             builder.Entity<Venta>()
                 .HasKey(b => b.Id);
