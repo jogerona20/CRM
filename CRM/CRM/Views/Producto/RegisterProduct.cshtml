@@ -1,0 +1,60 @@
+﻿@model CRM.Domain.Producto
+@inject Microsoft.AspNetCore.Identity.SignInManager<CRM.Domain.Cliente> _signInManager
+
+
+@if (!_signInManager.IsSignedIn(User))
+{
+    @Url.Action("Index", "Producto");
+}
+else
+{
+
+    <div>
+        <div class="row d-flex justify-content-center h-100">
+                <div class="row justify-content-center">
+                        <p class="text-center h3 fw-bold mb-3 mx-1 mx-md-4">Registrar Producto</p>
+                        <form class="mx-1 mx-md-4 col-12 mt-3" asp-action="RegisterProduct" asp-controller="Producto">
+                            <div class="row">
+                                <div class="col-5 mr-lg-5 mt-2">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input asp-for="SKU" type="text" class="form-control" />
+                                            <label asp-for="SKU" class="form-label">SKU</label>
+                                            <span asp-validation-for="SKU" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input asp-for="Nombre" type="text" class="form-control" />
+                                            <label asp-for="Nombre" class="form-label">Nombre</label>
+                                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input asp-for="Descripcion" type="text" class="form-control" />
+                                            <label asp-for="Descripcion" class="form-label">Descripción</label>
+                                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center mb-2">
+                                    <div class="form-outline flex-fill mb-0">
+                                        <input asp-for="Precio" type="number" class="form-control col-2" />
+                                        <label asp-for="Precio" class="form-label">Precio</label>
+                                        <span asp-validation-for="Precio" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex mx-4 mb-lg-4">
+                                <button class="btn btn-primary btn-lg" type="submit" value="RegisterProduct">Register</button>
+                            </div>
+                        </form>
+                </div>
+        </div>
+    </div>
+
+
+}
+

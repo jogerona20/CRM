@@ -23,6 +23,35 @@ namespace CRM.Controllers
             return View(productos);
         }
 
+        [Route("DeleteProducto")]
+        [HttpPost]
+        public IActionResult DeleteProducto(int id)
+        {
+            productoRepository.Delete(id);
+            productoRepository.SaveChanges();
+            return RedirectToAction("Index", "Producto");
+        }
+
+        [Route("RegisterProduct")]
+        [HttpPost]
+        public IActionResult RegisterProduct(Producto producto)
+        {
+            if (ModelState.IsValid)
+            {
+                productoRepository.Create(producto);
+                productoRepository.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("Index", "Producto");
+            }
+            return View();
+        }
+
+        [Route("RegisterProduct")]
+        public IActionResult RegisterProduct()
+        {
+            return View();
+        }
+
 
     }
 }

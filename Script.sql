@@ -5,6 +5,8 @@ INSERT INTO Producto VALUES ('SKU4', 'Producto4', 9281, 'Producto numero cuatro 
 INSERT INTO Producto VALUES ('SKU5', 'Producto5', 8373, 'Producto numero cinco en venta') 
 INSERT INTO Producto VALUES ('SKU6', 'Producto6', 99, 'Producto numero seis en venta') 
 INSERT INTO Producto VALUES ('SKU7', 'Producto7', 431, 'Producto numero siete en venta') 
+INSERT INTO Producto VALUES ('SKU8', 'Producto7', 431, 'Producto numero siete en venta') 
+INSERT INTO CarritoProducto VALUES(9,null,'510419da-02fe-4e43-8034-503f952558e5', 123)
 
 INSERT INTO Venta VALUES('510419da-02fe-4e43-8034-503f952558e5', GETDATE(), 'En espera', 806)
 

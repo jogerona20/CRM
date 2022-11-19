@@ -42,6 +42,7 @@ namespace CRM.Controllers
             {
                 productos.Add(productoRepository.GetById(item.IdProducto));
             }
+
             foreach (var item in productos)
             {
                 importe += (float)item.Precio;   
@@ -63,7 +64,7 @@ namespace CRM.Controllers
                 carritoProductoRepository.Update(item);
             }
             carritoProductoRepository.SaveChanges();
-            return RedirectToAction("Index", "Producto");
+            return RedirectToAction("Index", "Venta");
         }
     }
 }

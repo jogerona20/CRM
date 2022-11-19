@@ -17,9 +17,15 @@
             </div>
         </div>
     </div>}
+        @if (Model.ToList().Count == 0)
+        {
+    <form asp-action="PostVenta" asp-controller="Venta">
+        <button class="btn btn-success font-weight-bold disabled" style="color:white" type="submit" value="PostVenta">Realizar Compra</button>
+    </form>}else{
         <form asp-action="PostVenta" asp-controller="Venta">
             <button class="btn btn-success font-weight-bold" style="color:white" type="submit" value="PostVenta">Realizar Compra</button>
         </form>
+        }
     </div>
 </div>
 
