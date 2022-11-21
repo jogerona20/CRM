@@ -1,10 +1,14 @@
 ﻿using CRM.Domain;
 using CRM.Repository;
+using CRM.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CRM.Controllers
@@ -12,10 +16,13 @@ namespace CRM.Controllers
     public class ProductoController : Controller
     {
         private IProductoRepository productoRepository;
+        private readonly IClienteService clienteService;
 
-        public ProductoController(IProductoRepository productoRepository)
+
+        public ProductoController(IProductoRepository productoRepository, IClienteService clienteService)
         {
             this.productoRepository = productoRepository;
+            this.clienteService = clienteService;
         }
         public ActionResult Index()
         {
@@ -41,6 +48,30 @@ namespace CRM.Controllers
                 productoRepository.Create(producto);
                 productoRepository.SaveChanges();
                 ModelState.Clear();
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var currentUser = clienteService.GetUserByIdsync(currentUserId);
+                var senderEmail = new MailAddress("geovany_navarro@hotmail.com", "CRM-ADMIN");
+                var receiverEmail = new MailAddress(currentUser.Result.Correo,"Receiver");
+                var password = "Jogerona12";
+                var subject = "Creación de nuevo producto";
+                var body = "Nuevo Producto\nId: " + producto.Id + "\nNombre: " + producto.Nombre + "\nDescripción : " + producto.Descripcion + "\nPrecio: $" + producto.Precio;
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp-mail.outlook.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail.Address, password)
+                };
+                using (var mess = new MailMessage(senderEmail, receiverEmail)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(mess);
+                }
                 return RedirectToAction("Index", "Producto");
             }
             return View();

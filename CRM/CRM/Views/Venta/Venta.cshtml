@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model CRM.Domain.Venta
+
+
+<div class="row mt-5 mb-5">
+    <h2>Venta Seleccionada</h2>
+    <div class="col-12">
+        <h5>Id de la compra: @Model.Id</h5>
+        <div>
+            <h5>Fecha: @Model.Fecha.ToString("MM/dd/yyyy")</h5>
+            <h5>Importe: $@Model.Importe</h5>
+        </div>
+    </div>
+    <div>
+        <h3 class="mt-3">Estatus de envío</h3>
+    </div>
+
+    <div class="horizontal-timeline">
+
+        <ul class="list-inline items d-flex justify-content-between">
+            <li class="list-inline-item items-list">
+                <p class="py-1 px-2 rounded text-white" style="background-color: black;">Ordenado</p>
+            </li>
+            <li class="list-inline-item items-list">
+                @if (Model.EstatusEnvio == "Enviado" || Model.EstatusEnvio == "En Camino" || Model.EstatusEnvio == "Entregado")
+                {
+    <p class="py-1 px-2 rounded text-white" style="background-color: black;">Enviado</p> }
+else
+{
+<p class="py-1 px-2 rounded">Enviado</p>}
+            </li>
+            <li class="list-inline-item items-list">
+                @if (Model.EstatusEnvio == "En Camino" || Model.EstatusEnvio == "Entregado")
+                {
+    <p class="py-1 px-2 rounded text-white" style="background-color: black;">En Camino</p> }
+else
+{
+<p class="py-1 px-2 rounded">En Camino</p>}
+            </li>
+            <li class="list-inline-item items-list text-end" style="margin-right: 8px;">
+                @if (Model.EstatusEnvio == "Entregado")
+                {
+    <p class="py-1 px-2 rounded text-white" style="background-color: black;">Entregado</p> }
+else
+{
+<p class="py-1 px-2 rounded">Entregado</p>}
+            </li>
+        </ul>
+    </div>
+    @if (Model.EstatusEnvio != "Entregado")
+    {
+        <form asp-action="ActualizaEnvio" asp-controller="Venta" asp-route-id="@Model.Id">
+            <button class="btn btn-success font-weight-bold" style="color:white" type="submit" value="ActualizaEnvio">Siguiente status de envío</button>
+        </form>
+    }
+    <style>
+        .horizontal-timeline .items {
+            border-top: 2px solid #ddd;
+        }
+
+            .horizontal-timeline .items .items-list {
+                position: relative;
+                margin-right: 0;
+            }
+
+                .horizontal-timeline .items .items-list:before {
+                    content: "";
+                    position: absolute;
+                    height: 8px;
+                    width: 8px;
+                    border-radius: 50%;
+                    background-color: #ddd;
+                    top: 0;
+                    margin-top: -5px;
+                }
+
+            .horizontal-timeline .items .items-list {
+                padding-top: 15px;
+            }
+    </style>
+</div>
+</div>
+

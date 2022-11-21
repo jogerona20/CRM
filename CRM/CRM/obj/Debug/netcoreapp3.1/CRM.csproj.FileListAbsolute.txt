@@ -104,3 +104,4 @@ C:\Users\joelreyes\Documents\GitHub\CRM\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Vi
 C:\Users\joelreyes\Documents\GitHub\CRM\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\CarritoProducto\Index.cshtml.g.cs
 C:\Users\joelreyes\Documents\GitHub\CRM\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Venta\Index.cshtml.g.cs
 C:\Users\joelreyes\Documents\GitHub\CRM\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Producto\RegisterProduct.cshtml.g.cs
+C:\Users\joelreyes\Documents\GitHub\CRM\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Venta\Venta.cshtml.g.cs

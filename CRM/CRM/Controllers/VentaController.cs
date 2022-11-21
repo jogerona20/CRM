@@ -30,6 +30,37 @@ namespace CRM.Controllers
             return View(ventas);
         }
 
+        [Route("Venta/{id:int:min(1)}", Name = "Venta")]
+        public IActionResult Venta(int id)
+        {
+            var venta = ventaReposiory.GetById(id);
+            return View(venta);
+        }
+
+        [Route("ActualizaEnvio/{id:int:min(1)}", Name = "ActualizaEnvio")]
+        [HttpPost]
+        public IActionResult ActualizaEnvio(int id)
+        {
+            var venta = ventaReposiory.GetById(id);
+            switch (venta.EstatusEnvio)
+            {
+                case "Ordenado":
+                    venta.EstatusEnvio = "Enviado";
+                    break;
+                case "Enviado":
+                    venta.EstatusEnvio = "En Camino";
+                    break;
+                case "En Camino":
+                    venta.EstatusEnvio = "Entregado";
+                    break;
+                default:
+                    return RedirectToAction("Venta", "Venta", new { id = id });
+            }
+            ventaReposiory.Update(venta);
+            ventaReposiory.SaveChanges();
+            return RedirectToAction("Venta", "Venta", new { id = id });
+        }
+
         [Route("PostVenta")]
         [HttpPost]
         public IActionResult PostVenta()
