@@ -39,6 +39,27 @@ namespace CRM.Controllers
             return RedirectToAction("Index", "Producto");
         }
 
+        [Route("Producto/{id:int:min(1)}", Name = "ModificarProducto")]
+        [HttpPost]
+        public IActionResult ModificarProducto(Producto producto)
+        {
+            if (ModelState.IsValid)
+            {
+                productoRepository.Update(producto);
+                productoRepository.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("Index", "Producto");
+            }
+            return RedirectToAction("Index", "Producto");
+        }
+
+        [Route("Producto/{id:int:min(1)}", Name = "ModificarProducto")]
+        public IActionResult ModificarProducto(int id)
+        {
+            var producto = productoRepository.GetById(id);
+            return View(producto);
+        }
+
         [Route("RegisterProduct")]
         [HttpPost]
         public IActionResult RegisterProduct(Producto producto)

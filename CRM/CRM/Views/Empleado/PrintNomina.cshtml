@@ -1,0 +1,15 @@
+﻿@model CRM.DTO.Nomina
+
+<h5 class="mt-5">Nómina de empleado</h5>
+<h5>Id : @Model.empleado.Id</h5>
+<h5>Nombre Completo : @Model.empleado.NombreCompleto</h5>
+<h5>RFC : @Model.empleado.RFC</h5>
+<h5 class="mb-5">Fecha de Ingreso : @Model.empleado.FechaIngreso.ToString("MM/dd/yyyy")</h5>
+<h3>DEDUCCIONES</h3>
+<h5>IMSS : $@Model.IMSS</h5>
+<h5 class="mb-5">ISR : $@Model.ISR</h5>
+<h3>Ingresos</h3>
+<h5 class="mb-5">Sueldo Mensual: $@Model.SueldoAPagar</h5>
+<h3>TOTAL</h3>
+<h5 class="mb-5">Total a pagar: $@Model.Total</h5>
+

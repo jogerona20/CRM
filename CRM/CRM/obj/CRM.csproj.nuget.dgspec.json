@@ -70,7 +70,7 @@
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.30, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -81,6 +81,10 @@
             "Microsoft.Graph": {
               "target": "Package",
               "version": "[4.47.0, )"
+            },
+            "Rotativa.AspNetCore": {
+              "target": "Package",
+              "version": "[1.2.0, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

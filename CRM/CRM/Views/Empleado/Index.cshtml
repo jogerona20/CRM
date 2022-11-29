@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<CRM.Domain.Empleado>
+
+
+<div class="row mt-5 mb-5">
+    <h2>Empleados Registrados</h2>
+    <div class="mt-2 col-12">
+        <a class="btn btn-success font-weight-bold mb-3" style="color:white" asp-action="Create" asp-controller="Empleado">Agregar Empleado</a>
+        @foreach (var empleado in Model.ToList().OrderBy(x => x.FechaIngreso))
+        {
+    <div class="card mb-4 shadow-sm border-dark col-5">
+        <h5 class="card-header">@empleado.NombreCompleto</h5>
+        <div class="card-body">
+            <h5>Dirección : @empleado.Direccion</h5>
+            <h5>RFC : @empleado.RFC</h5>
+            <h5>Sueldo Base : $@empleado.SueldoBase</h5>
+            <div class="d-flex" style="float: right;">
+                <div class="btn-group">
+                    <a class="btn btn-dark font-weight-bold mr-3" style="color:white" asp-action="PrintNomina" asp-controller="Empleado" asp-route-id="@empleado.Id">Imprimir Nómina</a>
+                    <a class="btn btn-dark font-weight-bold mr-3" style="color:white" asp-route="Update" asp-route-id="@empleado.Id">Modificar</a>
+
+                    <form asp-action="DeleteEmpleado" asp-controller="Empleado" asp-route-id="@empleado.Id">
+                        <button class="btn btn-danger font-weight-bold mr-3" style="color:white" type="submit" value="DeleteEmpleado">Dar baja</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>}
+    </div>
+</div>
+

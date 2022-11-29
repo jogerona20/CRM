@@ -39,6 +39,11 @@ namespace CRM
             services.AddDbContext<CarritoProductoDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+
+            services.AddDbContext<EmpleadoDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+
             services.AddIdentity<Cliente, IdentityRole>()
                 .AddEntityFrameworkStores<VentaDbContext>().AddClaimsPrincipalFactory<ClientClaimsPrincipalFactory>();
 
@@ -66,6 +71,7 @@ namespace CRM
             services.AddControllersWithViews();
             services.AddTransient<IProductoRepository, ProductoRepository>();
             services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<IEmpleadoRepository, EmpleadoRepository>();
             services.AddTransient<ICarritoProductoRepository, CarritoProductoRepository>();
             services.AddTransient<IVentaRepository, VentaRepository>();
 
@@ -100,6 +106,8 @@ namespace CRM
                     name: "default",
                     pattern: "{controller=Producto}/{action=Index}");
             });
+
+            Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath, "../Rotativa");
         }
     }
 }

@@ -21,8 +21,9 @@
                         <button class="btn btn-success font-weight-bold mr-3" style="color:white" type="submit" value="PostCarritoCompra">Agregar al carrito</button>
                     </form>
                     <form asp-action="DeleteProducto" asp-controller="Producto" asp-route-id="@producto.Id">
-                        <button class="btn btn-danger font-weight-bold" style="color:white" type="submit" value="DeleteProducto">Borrar</button>
+                        <button class="btn btn-danger font-weight-bold mr-3" style="color:white" type="submit" value="DeleteProducto">Borrar</button>
                     </form>
+                        <a class="btn btn-dark font-weight-bold" style="color:white" asp-route="ModificarProducto" asp-route-id="@producto.Id">Modificar</a>
                 </div>
                 <h5 class="font-weight-bold">$@producto.Precio</h5>
             </div>
