@@ -1,5 +1,6 @@
 ﻿using CRM.Domain;
 using CRM.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace CRM.Controllers
             this.carritoProductoRepository = carritoProductoRepository;
             this.productoRepository = productoRepository;
         }
+
+        [Authorize]
         public IActionResult Index()
         {
             var currentUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -33,6 +36,7 @@ namespace CRM.Controllers
         }
 
         [Route("PostCarritoCompra")]
+        [Authorize]
         [HttpPost]
         public IActionResult PostCarritoCompra(int id)
         {
@@ -52,6 +56,7 @@ namespace CRM.Controllers
 
 
         [Route("DeleteCarritoProducto")]
+        [Authorize]
         [HttpPost]
         public IActionResult DeleteCarritoProducto(int id)
         {

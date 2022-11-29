@@ -1,5 +1,6 @@
 ﻿using CRM.Domain;
 using CRM.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace CRM.Controllers
         private ICarritoProductoRepository carritoProductoRepository;
         private IProductoRepository productoRepository;
 
-
+        
         public VentaController(IVentaRepository ventaRepository, ICarritoProductoRepository carritoProductoRepository, IProductoRepository productoRepository)
         {
             this.ventaReposiory = ventaRepository;
@@ -23,6 +24,7 @@ namespace CRM.Controllers
             this.productoRepository = productoRepository;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             var currentUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -30,6 +32,7 @@ namespace CRM.Controllers
             return View(ventas);
         }
 
+        [Authorize]
         [Route("Venta/{id:int:min(1)}", Name = "Venta")]
         public IActionResult Venta(int id)
         {
@@ -39,6 +42,7 @@ namespace CRM.Controllers
 
         [Route("ActualizaEnvio/{id:int:min(1)}", Name = "ActualizaEnvio")]
         [HttpPost]
+        [Authorize]
         public IActionResult ActualizaEnvio(int id)
         {
             var venta = ventaReposiory.GetById(id);
@@ -62,6 +66,7 @@ namespace CRM.Controllers
         }
 
         [Route("PostVenta")]
+        [Authorize]
         [HttpPost]
         public IActionResult PostVenta()
         {
@@ -81,7 +86,7 @@ namespace CRM.Controllers
             Venta venta = new Venta{
                 ClienteId = currentUser,
                 Importe = importe,
-                EstatusEnvio = "En espera",
+                EstatusEnvio = "Ordenado",
                 Fecha = DateTime.Now
             };
 

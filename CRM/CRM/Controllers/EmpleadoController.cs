@@ -6,6 +6,7 @@ using Rotativa.AspNetCore;
 using System;
 using CRM.DTO;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRM.Controllers
 {
@@ -24,11 +25,13 @@ namespace CRM.Controllers
             return View(empleados);
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Create(Empleado empleado)
         {
@@ -43,6 +46,7 @@ namespace CRM.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult DeleteEmpleado(int id)
         {
@@ -51,6 +55,7 @@ namespace CRM.Controllers
             return RedirectToAction("Index", "Empleado");
         }
 
+        [Authorize]
         [Route("Empleado/{id:int:min(1)}", Name = "Update")]
         [HttpPost]
         public ActionResult Update(Empleado empleado)
@@ -64,6 +69,8 @@ namespace CRM.Controllers
             }
             return View();
         }
+
+        [Authorize]
         [Route("Empleado/{id:int:min(1)}", Name = "Update")]
         public ActionResult Update(int id)
         {
@@ -71,7 +78,7 @@ namespace CRM.Controllers
             return View(empleado);
         }
 
-
+        [Authorize]
         public ActionResult PrintNomina(int id)
         {
             var empleado = empleadoRepository.GetById(id);

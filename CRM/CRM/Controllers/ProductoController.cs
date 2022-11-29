@@ -1,6 +1,7 @@
 ﻿using CRM.Domain;
 using CRM.Repository;
 using CRM.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,12 +25,14 @@ namespace CRM.Controllers
             this.productoRepository = productoRepository;
             this.clienteService = clienteService;
         }
+        [Authorize]
         public ActionResult Index()
         {
             var productos = productoRepository.Get().ToList<Producto>();
             return View(productos);
         }
 
+        [Authorize]
         [Route("DeleteProducto")]
         [HttpPost]
         public IActionResult DeleteProducto(int id)
@@ -40,6 +43,7 @@ namespace CRM.Controllers
         }
 
         [Route("Producto/{id:int:min(1)}", Name = "ModificarProducto")]
+        [Authorize]
         [HttpPost]
         public IActionResult ModificarProducto(Producto producto)
         {
@@ -53,6 +57,7 @@ namespace CRM.Controllers
             return RedirectToAction("Index", "Producto");
         }
 
+        [Authorize]
         [Route("Producto/{id:int:min(1)}", Name = "ModificarProducto")]
         public IActionResult ModificarProducto(int id)
         {
@@ -60,6 +65,7 @@ namespace CRM.Controllers
             return View(producto);
         }
 
+        [Authorize]
         [Route("RegisterProduct")]
         [HttpPost]
         public IActionResult RegisterProduct(Producto producto)
