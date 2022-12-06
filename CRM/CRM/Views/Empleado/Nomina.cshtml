@@ -1,0 +1,83 @@
+﻿@model CRM.DTO.Nomina
+@inject Microsoft.AspNetCore.Identity.SignInManager<CRM.Domain.Cliente> _signInManager
+
+
+@if (!_signInManager.IsSignedIn(User))
+{
+    @Url.Action("Index", "Producto");
+}
+else
+{
+
+    <div>
+        <div class="row d-flex justify-content-center h-100">
+                <div class="row justify-content-center">
+                        <p class="text-center h3 fw-bold mb-3 mx-1 mx-md-4">Calcular Nómina</p>
+                        <form class="mx-1 mx-md-4 col-12 mt-3" asp-action="PrintNomina" asp-controller="Empleado" asp-route-id=@Model.empleado.Id>
+                            <div class="row">
+                                <div class="col-5 mr-lg-5 mt-2">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input asp-for="empleado.NombreCompleto" type="text" class="form-control" disabled />
+                                            <label asp-for="empleado.NombreCompleto" class="form-label">Nombre Completo</label>
+                                            <span asp-validation-for="empleado.NombreCompleto" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input asp-for="empleado.RFC" type="text" class="form-control" disabled />
+                                            <label asp-for="empleado.RFC" class="form-label">RFC</label>
+                                            <span asp-validation-for="empleado.RFC" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center mb-2">
+                                    <div class="form-outline flex-fill mb-0">
+                                        <input asp-for="empleado.SueldoBase" type="number" class="form-control col-2" disabled />
+                                        <label asp-for="empleado.SueldoBase" class="form-label">Sueldo Base</label>
+                                        <span asp-validation-for="empleado.SueldoBase" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center mb-2">
+                                    <div class="form-outline flex-fill mb-0">
+                                        <input asp-for="DiasTrabajados" type="number" class="form-control col-2" disabled />
+                                        <label asp-for="DiasTrabajados" class="form-label">Dias Trabajados</label>
+                                        <span asp-validation-for="DiasTrabajados" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                @if (Model.empleado.CreditoInfonavit)
+                                {
+                            <div class="d-flex flex-row align-items-center mb-2">
+                                <div class="form-outline flex-fill mb-0">
+                                    <input asp-for="empleado.DescuentoInfonavit" type="number" class="form-control col-2" disabled />
+                                    <label asp-for="empleado.DescuentoInfonavit" class="form-label">Descuento Infonavit</label>
+                                    <span asp-validation-for="empleado.DescuentoInfonavit" class="text-danger"></span>
+                                </div>
+                            </div>}
+                                <div class="d-flex flex-row align-items-center mb-2">
+                                    <div class="form-outline flex-fill mb-0">
+                                        <input asp-for="Bono" type="number" class="form-control col-2" />
+                                        <label asp-for="Bono" class="form-label">Bono</label>
+                                        <span asp-validation-for="Bono" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center mb-2">
+                                    <div class="form-outline flex-fill mb-0">
+                                        <input asp-for="DiasDeIncapacidad" type="number" class="form-control col-2" max="15" />
+                                        <label asp-for="DiasDeIncapacidad" class="form-label">Dias de incapacidad en Quincena</label>
+                                        <span asp-validation-for="DiasDeIncapacidad" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex mx-4 mb-5">
+                                <button class="btn btn-primary btn-lg mb-5" type="submit" value="PrintNomina" >Calcular e Imprimir Nómina</button>
+                            </div>
+                        </form>
+                </div>
+        </div>
+    </div>
+
+
+}
+

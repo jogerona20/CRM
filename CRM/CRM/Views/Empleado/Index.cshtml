@@ -19,7 +19,7 @@
             <h5>Sueldo Base : $@empleado.SueldoBase</h5>
             <div class="d-flex" style="float: right;">
                 <div class="btn-group">
-                    <a class="btn btn-dark font-weight-bold mr-3" style="color:white" asp-action="PrintNomina" asp-controller="Empleado" asp-route-id="@empleado.Id">Imprimir Nómina</a>
+                    <a class="btn btn-dark font-weight-bold mr-3" style="color:white" asp-action="Nomina" asp-controller="Empleado" asp-route-id="@empleado.Id">Imprimir Nómina</a>
                     <a class="btn btn-dark font-weight-bold mr-3" style="color:white" asp-route="Update" asp-route-id="@empleado.Id">Modificar</a>
 
                     <form asp-action="DeleteEmpleado" asp-controller="Empleado" asp-route-id="@empleado.Id">

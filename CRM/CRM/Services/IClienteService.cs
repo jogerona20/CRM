@@ -12,6 +12,8 @@ namespace CRM.Services
     {
         Task<Cliente> GetUserByEmailAsync(string email);
 
+        IEnumerable<Cliente> GetClientes();
+
         Task<IdentityResult> CreateUserAsync(SignUpModel userModel);
 
         Task AddRoleToUser(string email, string role);

@@ -59,5 +59,10 @@ namespace CRM.Services
         {
             return accountRepository.IsAdmin(email);
         }
+
+        public IEnumerable<Cliente> GetClientes()
+        {
+            return accountRepository.GetClientes();
+        }
     }
 }

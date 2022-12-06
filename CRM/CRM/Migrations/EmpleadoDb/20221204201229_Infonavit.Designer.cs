@@ -4,14 +4,16 @@ using CRM.Data.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CRM.Migrations.EmpleadoDb
 {
     [DbContext(typeof(EmpleadoDbContext))]
-    partial class EmpleadoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221204201229_Infonavit")]
+    partial class Infonavit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,6 +27,12 @@ namespace CRM.Migrations.EmpleadoDb
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("CreditoInfonavit")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("DescuentoInfonavit")
+                        .HasColumnType("float");
 
                     b.Property<string>("Direccion")
                         .IsRequired()

@@ -1,15 +1,27 @@
 ﻿@model CRM.DTO.Nomina
 
 <h5 class="mt-5">Nómina de empleado</h5>
+<h5 class="mt-5">Quincena N° @Model.Quincena</h5>
+<h5 class="mt-5">Fecha Actual: @DateTime.Now.ToString("MM/dd/yyyy")</h5>
 <h5>Id : @Model.empleado.Id</h5>
 <h5>Nombre Completo : @Model.empleado.NombreCompleto</h5>
 <h5>RFC : @Model.empleado.RFC</h5>
-<h5 class="mb-5">Fecha de Ingreso : @Model.empleado.FechaIngreso.ToString("MM/dd/yyyy")</h5>
+<h5>Fecha de Ingreso : @Model.empleado.FechaIngreso.ToString("MM/dd/yyyy")</h5>
+<h5>Días de incapacidad : @Model.DiasDeIncapacidad</h5>
 <h3>DEDUCCIONES</h3>
+@if (Model.empleado.CreditoInfonavit)
+{
+<h5>Descuento Credito Infonativ : $@Model.empleado.DescuentoInfonavit</h5>}
 <h5>IMSS : $@Model.IMSS</h5>
-<h5 class="mb-5">ISR : $@Model.ISR</h5>
-<h3>Ingresos</h3>
-<h5 class="mb-5">Sueldo Mensual: $@Model.SueldoAPagar</h5>
+<h5>ISR : $@Model.ISR</h5>
+<h5 class="mb-5">Total de deducciones: $@Model.TotalDeducciones</h5>
+
+<h3>INGRESOS</h3>
+<h5>Días Trabajados: @Model.DiasTrabajados</h5>
+<h5>Sueldo Base: $@Model.empleado.SueldoBase</h5>
+<h5>Bono: $@Model.Bono</h5>
+<h5>Apoyo patrón dias incapacidad: $@Model.ApoyoPatron</h5>
+<h5 class="mb-5">Total de Ingresos: $@Model.SueldoAPagar</h5>
 <h3>TOTAL</h3>
 <h5 class="mb-5">Total a pagar: $@Model.Total</h5>
 

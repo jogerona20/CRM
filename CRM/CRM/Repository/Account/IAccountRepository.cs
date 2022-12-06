@@ -10,6 +10,7 @@ namespace CRM.Repository
 {
     public interface IAccountRepository
     {
+        IEnumerable<Cliente> GetClientes();
         Task<Cliente> GetUserByEmailAsync(string email);
 
         Task<IdentityResult> CreateUserAsync(SignUpModel userModel);

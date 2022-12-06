@@ -110,6 +110,38 @@ namespace CRM.Controllers
             return View();
         }
 
-
+        [Authorize]
+        [Route("SendPromo")]
+        [HttpPost]
+        public IActionResult SendPromo(int id)
+        {
+            var producto = productoRepository.GetById(id);
+            foreach (var item in clienteService.GetClientes().ToList())
+            {
+                var senderEmail = new MailAddress("geovany_navarro@hotmail.com", "CRM-ADMIN");
+                var receiverEmail = new MailAddress(item.Correo, "Receiver");
+                var password = "Jogerona12";
+                var subject = "¡Nueva Promoción de Producto!";
+                var body = "PRODUCTO EN PROMOCIÓN\nId: " + producto.Id + "\nNombre: " + producto.Nombre + "\nDescripción : " + producto.Descripcion + "\nPrecio Promoción: $" + producto.Precio;
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp-mail.outlook.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail.Address, password)
+                };
+                using (var mess = new MailMessage(senderEmail, receiverEmail)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(mess);
+                }
+            }
+            return RedirectToAction("Index", "Producto");
+        }
     }
 }

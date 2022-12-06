@@ -79,13 +79,21 @@ namespace CRM.Controllers
         }
 
         [Authorize]
-        public ActionResult PrintNomina(int id)
+        public ActionResult PrintNomina(Nomina nomina, int id)
+        {
+            var empleado = empleadoRepository.GetById(id);
+            nomina.empleado = empleado;
+            nomina.CalcularNomina();
+            return new ViewAsPdf("PrintNomina", nomina);
+        }
+
+        [Authorize]
+        public ActionResult Nomina(int id)
         {
             var empleado = empleadoRepository.GetById(id);
             var nomina = new Nomina();
             nomina.empleado = empleado;
-            nomina.CalcularNomina();
-            return new ViewAsPdf("PrintNomina", nomina);
+            return View(nomina);
         }
 
     }

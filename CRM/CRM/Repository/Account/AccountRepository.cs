@@ -30,6 +30,11 @@ namespace CRM.Repository
             return await _userManager.FindByEmailAsync(email);
         }
 
+        public IEnumerable<Cliente> GetClientes()
+        {
+            return _userManager.Users;
+        }
+
         public async Task<Cliente> GetUserByIdsync(string id)
         {
             return await _userManager.FindByIdAsync(id);

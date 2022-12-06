@@ -19,5 +19,9 @@ namespace CRM.Domain
         public String Direccion { get; set; }
         [Required]
         public DateTime FechaIngreso { get; set; }
+        [Required]
+        public bool CreditoInfonavit { get; set; }
+        public double DescuentoInfonavit { get; set; }
+
     }
 }
